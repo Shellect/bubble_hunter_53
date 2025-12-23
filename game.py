@@ -1,4 +1,6 @@
 import random
+from threading import Thread
+from time import sleep
 from tkinter import Tk, Canvas
 from submarine import Submarine
 from bubble import Bubble
@@ -26,5 +28,15 @@ for i in range(5):
     ))
 
 window.bind("<Key>", submarine.move)
+def move_bubble():
+    while True:
+        for bubble in bubbles:
+            bubble.move()
+        sleep(.1)
+
+Thread(
+    target=move_bubble,
+    daemon=True
+).start()
 
 window.mainloop()

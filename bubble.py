@@ -1,4 +1,5 @@
 import tkinter
+from random import randint
 
 
 class Bubble:
@@ -10,6 +11,7 @@ class Bubble:
         self.r = r
         self.y = y
         self.x = x
+        self.speed = randint(1, 15)
         self.image = self.canvas.create_oval(
             self.x,
             self.y,
@@ -20,4 +22,8 @@ class Bubble:
 
     def __del__(self):
         self.canvas.delete(self.image)
+
+
+    def move(self):
+        self.canvas.move(self.image, randint(-2, 2), -self.speed)
 
